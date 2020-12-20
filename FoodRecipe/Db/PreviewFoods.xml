@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<previewfoods>
+  <previewfood>
+    <id>1</id>
+    <imageNameFile>splash0.png</imageNameFile>
+    <intro>Bánh mì trứng ốp la với bánh mì ngoài nóng giòn, nhân trứng ốp la nóng hổi, béo thơm cùng với hương vị rau và gia vị, mang đến cho bạn bữa ăn sáng đúng chất siêu nhanh.</intro>
+  </previewfood>
+  <previewfood>
+    <id>2</id>
+    <imageNameFile>splash1.jpg</imageNameFile>
+    <intro>Chẳng những có vị chua thanh rất dễ ăn, nấu canh cá theo cách này còn giúp bạn có được món canh với rất nhiều rau, bổ sung chất xơ nữa.</intro>
+  </previewfood>
+  <previewfood>
+    <id>3</id>
+    <imageNameFile>splash3.jpg</imageNameFile>
+    <intro>Không mất quá nhiều thời gian, chỉ với 10 phút bạn đã có ngay món tôm hùm hấp bia sả cực thơm ngon để chiêu đãi cả nhà. Xem ngay nhé!</intro>
+  </previewfood>
+</previewfoods>

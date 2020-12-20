@@ -1,0 +1,106 @@
+﻿<Window x:Class="FoodRecipe.Screens.FavoriteFood"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodRecipe.Screens"
+        xmlns:local1="clr-namespace:FoodRecipe.Helper"
+        mc:Ignorable="d"
+        Title="FavoriteFood" Height="630" Width="1024" Background="#F65D4E" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local1:ImagePathToAbsolutePathConverter x:Key="converter"></local1:ImagePathToAbsolutePathConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="174" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="0,50,0,10">
+            <Image Source="../Images/healthy-eating.png" RenderOptions.BitmapScalingMode="HighQuality" Width="90"  Margin="0, 0, 0, 30"/>
+            <Button x:Name="homeMenuButton" Background="Transparent" BorderThickness="0" Cursor="Hand" 
+                    Click="homeMenuButton_Click">
+                <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                    <Image Source="../Images/book.png" Width="40"/>
+                    <Label Content="Danh sách món" Foreground="White" FontSize="15" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Cursor="Hand">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="10,10,10,10">
+                    <Image Source="../Images/like.png" Width="40" />
+                    <Label Content="Yêu thích" 
+                       Foreground="White" 
+                       FontSize="15" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="addMenuButton" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="addMenuButton_Click">
+                <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                    <Image Source="../Images/add.png" Width="40" />
+                    <Label Content="Tạo món" Foreground="White" FontSize="15" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Border CornerRadius="50" 
+                Background="#faf9fd" 
+                BorderThickness="1" 
+                Margin="0,10,25,10" 
+                Padding="20, 20, 20, 25"
+                Grid.Column="1"
+                >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+                <StackPanel HorizontalAlignment="Center" Margin="0, 0, 0, 10">
+                    <Label Content="Danh sách yêu thích" FontSize="23" FontWeight="Bold" Foreground="#F65D4E"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <ListView Name="dataListView" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  Margin="0,20,0,0" Grid.Row="0"
+                                  BorderThickness="0"
+                                  Background="Transparent">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5" Width="150">
+                                    <Button Tag="{Binding Id}" Click="Button_Click_Detail" Background="Transparent" BorderThickness="0" Cursor="Hand">
+                                        <Image Source="{Binding ThumbnailPath, Converter={StaticResource converter}}"/>
+                                    </Button>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Tag="{Binding Id}" Click="Button_Click_Detail" Background="Transparent" BorderThickness="0" Cursor="Hand">
+                                            <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
+                                        </Button>
+                                        <Button Grid.Column="1" VerticalAlignment="Center" Tag="{Binding Id}" Click="Button_Click_RemoveFav" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="10,0">
+                                            <Image Width="20" Source="../Images/broken-heart.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center" />
+                                        </Button>
+                                    </Grid>
+                                    <!--<TextBlock Text="{Binding Description}" FontSize="10" TextWrapping="Wrap" />-->
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel x:Name="pagingStackPanel" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                    </StackPanel>
+                </Grid>
+                
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

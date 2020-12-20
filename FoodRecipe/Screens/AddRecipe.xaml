@@ -1,0 +1,155 @@
+﻿<Window x:Class="FoodRecipe.Screens.AddRecipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodRecipe.Screens"
+        mc:Ignorable="d"
+        Title="Add Recipe" Height="630" Width="1024" Background="#F65D4E" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="174" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="0,50,0,10">
+            <Image Source="../Images/healthy-eating.png" Width="90"  Margin="0, 0, 0, 30"/>
+            <Button Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Button_Click_List">
+                <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                    <Image Source="../Images/book.png" Width="40"/>
+                    <Label Content="Danh sách món" Foreground="White" FontSize="15" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Cursor="Hand" Click="Button_Click_Fav">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="10,10,10,10">
+                    <Image Source="../Images/like.png" Width="40" />
+                    <Label Content="Yêu thích" 
+                       Foreground="White" 
+                       FontSize="15" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0">
+                <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                    <Image Source="../Images/add.png" Width="40" />
+                    <Label Content="Tạo món" Foreground="White" FontSize="15" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Border CornerRadius="50" 
+                Background="#faf9fd" 
+                BorderThickness="1" 
+                Margin="0,10,25,10" 
+                Padding="20"
+                Grid.Column="1"
+                >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="18*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Center" FontSize="20" Content="THÊM CÔNG THỨC MÓN ĂN"/>
+                    <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <StackPanel Margin="0 5">
+                                <Label Content="Tên món ăn *" Margin="25,0"/>
+                                <Border CornerRadius="8" BorderBrush="LightGray" BorderThickness="1" Margin="25,0" Background="White">
+                                    <TextBox Name="txtName" BorderThickness="0" Margin="10,0,10,0" VerticalContentAlignment="Center" Height="30" FontSize="13" FontWeight="Bold" />
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="0 5">
+                                <Label Content="Đường dẫn video hướng dẫn" Margin="25,0"/>
+                                <Border CornerRadius="8" BorderBrush="LightGray" BorderThickness="1" Margin="25,0" Background="White">
+                                    <TextBox Name="txtVideoLink" BorderThickness="0" Margin="10,0,10,0" Height="30" VerticalContentAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <Label Content="Ảnh minh họa thành quả *" HorizontalAlignment="Center" />
+                            <Border MouseDown="Upload_Image_MouseDown" CornerRadius="8" BorderBrush="LightGray" BorderThickness="1" Margin="0, 5">
+                                <StackPanel >
+                                    <Image RenderOptions.BitmapScalingMode="HighQuality" Name="Image" Opacity="0.5" Source="../Images/UploadImage.png" Stretch="Fill" MaxWidth="100" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <Label Content="Mô tả món ăn *" Margin="25,0" />
+                            <Border CornerRadius="8" BorderBrush="LightGray" BorderThickness="1" Margin="25,5" Height="105" Background="White">
+                                <TextBox Name="txtDescription" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="100" Margin="10,0,10,0" AcceptsReturn="True" TextWrapping="Wrap" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid Margin="25,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="4*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Tên bước *" VerticalAlignment="Center" />
+                        <Label Name="VideoLinkLabel" Content="Cách làm *" Grid.Row="1" />
+                        <Border Grid.Column="1" CornerRadius="8" BorderBrush="LightGray" BorderThickness="1" Margin="25,10" Background="White">
+                            <TextBox Name="StepName" BorderThickness="0" Height="25" Margin="10,0" VerticalContentAlignment="Center" FontWeight="DemiBold" />
+                        </Border>
+                        <Border Grid.Column="1" Grid.Row="1" CornerRadius="8" BorderBrush="LightGray" BorderThickness="1" Margin="25,10" Background="White">
+                            <TextBox Name="DescriptionStep" AcceptsReturn="True" TextWrapping="Wrap" BorderThickness="0" Height="70" Margin="10,0" VerticalScrollBarVisibility="Auto" />
+                        </Border>
+                        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <Image RenderOptions.BitmapScalingMode="HighQuality" MouseDown="StepImage_MouseDown" Opacity="1" Source="../Images/UploadImage.png" />
+                            <ListBox Name="stepImagesList" BorderThickness="0">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Height="60" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                        <WrapPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top">
+                            <Border CornerRadius="8" BorderBrush="LightGray" BorderThickness="2" Height="30" Width="63" Margin="0, 0, 10, 0">
+                                <Button Click="Button_Reset_Step" BorderThickness="0" Content="Nhập lại"/>
+                            </Border>
+                            <Border CornerRadius="8" BorderBrush="LightGray" BorderThickness="2" Height="30" Width="63" Margin="10, 0, 25, 0">
+                                <Button Click="Button_Add_Step" BorderThickness="0" Content="Thêm" FontWeight="Bold" Name="addStepButton" />
+                            </Border>
+                        </WrapPanel>
+                            <ListBox Name="stepsList" Grid.Row="3" Grid.ColumnSpan="2" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,1,0,0" Padding="5">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                    <Border BorderThickness="1" BorderBrush="Gray">
+                                        <TextBlock Text="{Binding StepName}" Padding="10" FontWeight="SemiBold" FontFamily="15" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" Tag="{Binding}" />
+                                    </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                    </Grid>
+                    </Grid>
+
+                    <Border Grid.Row="3" CornerRadius="8" BorderBrush="LightGray" BorderThickness="2" Height="40" Width="90" HorizontalAlignment="Center">
+                        <Button Click="Button_Click" BorderThickness="0" Content="Hoàn tất" FontWeight="Bold" FontSize="15" />
+                    </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
